@@ -6,6 +6,7 @@ body
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    background-color: black;
 }
 
 ul
@@ -42,9 +43,72 @@ li:before
     display: none;
 }
 
+svg[data-fa-pseudo-element=":before"]
+{
+    height: 6em;
+    overflow: hidden !important;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100% !important;
+    transition: 0.4s;
+    clip: rect(0px, 150px, 0px, 0px);
+}
+
+ul li:hover > svg[data-fa-pseudo-element=":before"]
+{
+    clip: rect(0px, 150px, 100px, 0px);
+    height: 6em;
+}
+
+ul li:hover > .linha .cor
+{
+    top: 100%;
+}
+
+.linha
+{
+    height: 105%;
+    width: 100%;
+    position: absolute;
+}
+
+.linha .cor 
+{
+    width: 100%; height: 4px;
+    background-color: blue;
+    position: absolute;
+    top: 0;
+    transition: 0.4s;
+}
+
+.youtube .linha .cor
+{
+    background-color: red;
+}
+
+.twitter .linha .cor
+{
+    background-color: cyan;
+}
+
+.whatsapp .linha .cor
+{
+    background-color: greenyellow;
+}
+
+.telegram .linha .cor
+{
+    background-color: cyan;
+}
+
+.facebook .linha .cor
+{
+    background-color: blue;
+}
+
 .youtube::before
 {
-    content: "\f09a";
+    content: "\f167";
 }
 
 .twitter::before
@@ -52,11 +116,42 @@ li:before
     content: "\f099";
 }
 
-.svg-inline--fa
+.whatsapp::before
 {
-    height: 6em;
-    width: unset !important;
+    content: "\f232";
+}
+
+.telegram::before
+{
+    content: "\f3fe";
+}
+
+.facebook::before
+{
+    content: "\f09a";
+}
+
+svg[data-fa-pseudo-element=":before"][data-icon="youtube"]
+{
     color: red;
-    position: absolute;
-    top: 0; left: 0;
+}
+
+svg[data-fa-pseudo-element=":before"][data-icon="twitter"]
+{
+    color: cyan;
+}
+
+svg[data-fa-pseudo-element=":before"][data-icon="whatsapp"]
+{
+    color: greenyellow;
+}
+
+svg[data-fa-pseudo-element=":before"][data-icon="telegram-plane"]
+{
+    color: cyan;
+}
+
+svg[data-fa-pseudo-element=":before"][data-icon="facebook"]
+{
+    color: blue;
 }
