@@ -67,7 +67,8 @@ ul li:hover > .linha .cor
 
 .linha
 {
-    height: 105%;
+    height: 115%;
+    margin-top: -10%;
     width: 100%;
     position: absolute;
 }
