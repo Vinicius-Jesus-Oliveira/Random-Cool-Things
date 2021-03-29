@@ -1,0 +1,62 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+ul
+{
+    position: relative;
+    display: flex;
+}
+
+ul li
+{
+    position: relative;
+    list-style: none;
+    margin: 0 20px;
+    cursor: pointer;
+}
+
+ul li a {
+    text-decoration: none;
+}
+
+ul li a svg {
+    font-size: 6em !important;
+    color: white !important;
+}
+
+li:before
+{
+    font-family: "Font Awesome 5 Brands";
+    font-weight: 900;
+    position: relative;
+    top: 0; left: 0;
+    font-size: 6em !important;
+    color: red;
+    display: none;
+}
+
+.youtube::before
+{
+    content: "\f09a";
+}
+
+.twitter::before
+{
+    content: "\f099";
+}
+
+.svg-inline--fa
+{
+    height: 6em;
+    width: unset !important;
+    color: red;
+    position: absolute;
+    top: 0; left: 0;
+}
