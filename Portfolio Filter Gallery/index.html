@@ -10,26 +10,72 @@
 </head>
 <body>
     <div class="container">
-        <div class="row text-center">
-            <ul class="list-group flex-row justify-content-center my-5">
-                <li class="list-group-item active" data-filter="All">All</li>
-                <li class="list-group-item" data-filter="Mobile">Mobile</li>
-                <li class="list-group-item" data-filter="Camera">Camera</li>
-                <li class="list-group-item" data-filter="Watch">Watch</li>
-                <li class="list-group-item" data-filter="Shoe">Shoe</li>
-                <li class="list-group-item" data-filter="Headphone">Headphone</li>
-                <li class="list-group-item" data-filter="Landscape">landscape</li>
-            </ul>
+        <div class="row list-group flex-row justify-content-center pe-0 my-5">
+            <button class="list-group-item active" data-filter="All">All</button>
+            <button class="list-group-item" data-filter="Mobile">Mobile</button>
+            <button class="list-group-item" data-filter="Camera">Camera</button>
+            <button class="list-group-item" data-filter="Watch">Watch</button>
+            <button class="list-group-item" data-filter="Shoe">Shoe</button>
+            <button class="list-group-item" data-filter="Headphone">Headphone</button>
+            <button class="list-group-item" data-filter="Landscape">landscape</button>
         </div>
 
         <div class="row imagens">
-            <div class="col-md-4 Landscape item-box"><img src="images/1.jpg" alt=""></div>
-            <div class="col-md-4 Landscape item-box"><img src="images/2.jpg" alt=""></div>
-            <div class="col-md-4 Landscape item-box"><img src="images/3.jpg" alt=""></div>
-            <div class="col-md-4 Landscape item-box"><img src="images/1.jpg" alt=""></div>
-            <div class="col-md-4 Landscape item-box"><img src="images/2.jpg" alt=""></div>
-            <div class="col-md-4 Landscape item-box"><img src="images/3.jpg" alt=""></div>
+            <div class="col-md-4 col-6 Landscape item-box"><img src="images/1.jpg"></div>
+            <div class="col-md-4 col-6 Landscape item-box"><img src="images/2.jpg"></div>
+            <div class="col-md-4 col-6 Landscape item-box"><img src="images/3.jpg"></div>
+            <div class="col-md-4 col-6 Landscape item-box"><img src="images/4.jpg"></div>
+            <div class="col-md-4 col-6 Landscape item-box"><img src="images/5.jpg"></div>
+            <div class="col-md-4 col-6 Landscape item-box"><img src="images/6.jpg"></div>
+            <div class="col-md-4 col-6 Landscape item-box"><img src="images/7.jpg"></div>
+            <div class="col-md-4 col-6 Landscape item-box"><img src="images/8.jpg"></div>
+
+            
+            <div class="col-md-4 col-6 Camera item-box"><img src="images/camera1.jpg"></div>
+            <div class="col-md-4 col-6 Camera item-box"><img src="images/camera2.jpg"></div>
+            <div class="col-md-4 col-6 Camera item-box"><img src="images/camera3.jpg"></div>
+
+            <div class="col-md-4 col-6 Headphone item-box"><img src="images/Headphone1.jpg"></div>
+            <div class="col-md-4 col-6 Headphone item-box"><img src="images/Headphone2.jpg"></div>
+            <div class="col-md-4 col-6 Headphone item-box"><img src="images/Headphone3.jpg"></div>
+            <div class="col-md-4 col-6 Headphone item-box"><img src="images/Headphone4.jpg"></div>
+
+            <div class="col-md-4 col-6 Mobile item-box"><img src="images/Mobile1.jpg"></div>
+            <div class="col-md-4 col-6 Mobile item-box"><img src="images/Mobile2.jpg"></div>
+            <div class="col-md-4 col-6 Mobile item-box"><img src="images/Mobile3.jpg"></div>
+            <div class="col-md-4 col-6 Mobile item-box"><img src="images/Mobile4.jpg"></div>
+            <div class="col-md-4 col-6 Mobile item-box"><img src="images/Mobile5.jpg"></div>
+
+            <div class="col-md-4 col-6 Watch item-box"><img src="images/watch1.jpg"></div>
+            <div class="col-md-4 col-6 Watch item-box"><img src="images/watch2.jpg"></div>
+            <div class="col-md-4 col-6 Watch item-box"><img src="images/watch3.jpg"></div>
+            <div class="col-md-4 col-6 Watch item-box"><img src="images/watch4.jpg"></div>
+
+            <div class="col-md-4 col-6 Shoe item-box"><img src="images/shoe1.jpg"></div>
+            <div class="col-md-4 col-6 Shoe item-box"><img src="images/shoe2.jpg"></div>
+            <div class="col-md-4 col-6 Shoe item-box"><img src="images/shoe3.jpg"></div>
+            <div class="col-md-4 col-6 Shoe item-box"><img src="images/shoe4.jpg"></div>
+
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script language="javascript">
+        $(document).ready(function () {
+            $(".list-group-item").click(function () {
+                const filter = $(this).attr('data-filter');
+
+                if (filter == 'All') {
+                    $(".imagens .item-box").show('1000');
+                } else {
+                    $(".imagens ." + filter).show('1000');
+                    $(".imagens .item-box").not('.' + filter).hide('1000');
+                }
+
+                $(this).addClass("active").siblings().removeClass("active");
+            });
+        });
+    </script>
 </body>
 </html>

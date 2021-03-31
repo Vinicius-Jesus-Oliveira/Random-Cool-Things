@@ -1,9 +1,13 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+.list-group-item.active {
+    margin-top: 0 !important;
+}
+
 .list-group-item
 {
     width: fit-content;
-    margin: 10px;
+    margin: 1px;
     border-top-width: 1px !important;
     border-radius: 5px !important;
     transition: 0.3s;
@@ -19,6 +23,7 @@
     width: 100%;
     border-radius: 5px;
     transition: 0.3s;
+    filter: grayscale(90%);
 }
 
 .item-box {
@@ -28,4 +33,12 @@
 .item-box img:hover {
     transform: scale(0.9);
     box-shadow: 0 0 20px 5px rgb(0, 0, 0, 0.4);
+    filter: grayscale(0);
+    filter: brightness(110%);
+}
+
+@media (max-width: 640px) {
+    ul.list-group {
+        flex-direction: column !important;
+    }
 }
