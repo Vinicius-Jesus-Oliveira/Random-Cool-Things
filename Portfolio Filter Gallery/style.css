@@ -1,0 +1,16 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.list-group-item
+{
+    width: fit-content;
+    margin: 10px;
+    border-top-width: 1px !important;
+    border-radius: 5px !important;
+    transition: 0.3s;
+}
+
+.list-group-item:not(.active):hover {
+    background-color: #f83771;
+    color: white;
+    cursor: pointer;
+}
