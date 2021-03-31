@@ -14,3 +14,18 @@
     color: white;
     cursor: pointer;
 }
+
+.item-box img {
+    width: 100%;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.item-box {
+    margin-bottom: 30px;
+}
+
+.item-box img:hover {
+    transform: scale(0.9);
+    box-shadow: 0 0 20px 5px rgb(0, 0, 0, 0.4);
+}
