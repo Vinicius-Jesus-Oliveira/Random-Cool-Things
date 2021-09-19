@@ -6,10 +6,13 @@
 
 :root {
     --main-gradient: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
-    --weather-background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-    --text-and-icons-color: rgb(70, 70, 70);
+    --weather-background: linear-gradient(to bottom, #fdfbfb 0%, #ebedee 100%);
+    --color: rgb(70, 70, 70);
+    --opposite-color: rgb(245, 245, 245);
     --sun-color: rgb(255, 123, 0);
-    --termometer: linear-gradient(to bottom, rgb(197, 39, 0), rgb(0, 51, 218));
+    --temp-max: rgb(197, 39, 0);
+    --temp-min: rgb(0, 51, 218);
+    --termometer: linear-gradient(to bottom, var(--temp-max), var(--temp-min));
     --separation: linear-gradient(to bottom, transparent, rgb(70, 70, 70), transparent);
 }
 
@@ -26,7 +29,7 @@ main {
     padding: 0 1rem;
     display: grid;
     place-items: center;
-    color: var(--text-and-icons-color);
+    color: var(--color);
 }
 
 #weather {
@@ -36,7 +39,7 @@ main {
     box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.5);
     display: flex;
     background: var(--weather-background);
-    height: 20.8rem;
+    height: 22.2rem;
 }
 
 #today,
@@ -85,16 +88,16 @@ main {
     justify-content: center;
     position: relative;
     margin-top: 2rem;
-    height: 6rem;
+    height: 7.5rem;
 }
 
 #next,
 #previous {
     font-size: 1.5rem;
-    padding: 0.2rem 0.6rem;
+    padding: 0 0.7rem;
     background: transparent;
-    border: 1px solid var(--text-and-icons-color);
-    color: var(--text-and-icons-color);
+    border: 1px solid var(--color);
+    color: var(--color);
     border-radius: 50%;
     cursor: pointer;
     transition: 0.2s ease-in-out;
@@ -104,7 +107,9 @@ main {
 
 #next:hover,
 #previous:hover {
-    background: rgba(255, 255, 255, 0.178);
+    background: var(--color);
+    color: var(--opposite-color);
+    border-color: transparent;
 }
 
 #next {
@@ -149,20 +154,26 @@ main {
 }
 
 .day {
-    padding: 0 0.5rem;
+    padding: 0.5rem;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     position: relative;
 }
 
-.day::before {
+.day::before,
+.day:last-of-type::after {
     content: "";
     position: absolute;
     top: 0;
     bottom: 0;
     width: 1px;
     background: var(--separation);
+}
+
+.day:last-of-type::after {
+    right: 0;
+    left: unset;
 }
 
 #week .temperatura {
@@ -186,12 +197,114 @@ main {
 #week .temp-min {
     position: absolute;
     transform: translateX(80%);
+    font-weight: bold;
 }
 
 #week .temp-max {
     top: -0.5rem;
+    color: var(--temp-max);
 }
 
 #week .temp-min {
     bottom: -0.5rem;
+    color: var(--temp-min);
+}
+
+#timer {
+    position: absolute;
+    bottom: -0.5rem;
+    cursor: pointer;
+    overflow: hidden;
+    height: 25px;
+    padding: 0 0.5rem;
+    width: 12rem;
+}
+
+#timer p {
+    width: fit-content;
+    display: inline-block;
+    transform: translateY(-35%);
+}
+
+#timer input {
+    position: relative;
+    width: 50px;
+    height: 25px;
+    cursor: pointer;
+}
+
+#timer input::before,
+#timer input::after,
+#timer #checked,
+#timer #notChecked {
+    transition: all 0.3s;
+    position: absolute;
+}
+
+#timer input::before,
+#timer input::after {
+    top: 0;
+    bottom: 0;
+    content: "";
+    right: 0;
+    left: 0;
+}
+
+#timer input::after {
+    width: 115px;
+    left: 55px;
+    display: flex;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+
+#timer #checked,
+#timer #notChecked {
+    width: 17.5px;
+    height: 15px;
+    padding: 5px;
+    background-color: var(--color);
+}
+
+#timer #checked {
+    left: 35px;
+}
+
+#timer #notChecked {
+    left: 15px;
+    filter: brightness(200%);
+}
+
+#timer input:not(:checked)::before {
+    background-color: var(--color);
+}
+
+#timer input:checked::before {
+    background-color: #18b391;
+}
+
+#timer input:not(:checked)::after {
+    content: "Ativar Timer";
+}
+
+#timer input:checked::after {
+    content: "Desativar Timer";
+}
+
+#timer input:not(:checked) + #checked {
+    top: -50px;
+}
+
+#timer input:checked ~ #checked {
+    top: 5px;
+}
+
+#timer input:not(:checked) ~ #notChecked {
+    top: 5px;
+}
+
+#timer input:checked ~ #notChecked {
+    top: -50px;
 }

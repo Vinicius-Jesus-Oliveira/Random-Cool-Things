@@ -41,21 +41,27 @@
                             <p></p>
                         </div>
                         
-                        <div id="sunset">
+                        <div id="sunrise">
                             <i class="fas fa-cloud-sun"></i>
-                            <strong>Pôr do sol</strong>
+                            <strong>Nascer do Sol</strong>
                             <p></p>
                         </div>
                         
-                        <div id="sunrise">
+                        <div id="sunset">
                             <i class="far fa-moon"></i>
-                            <strong>Nascer do Sol</strong>
+                            <strong>Pôr do sol</strong>
                             <p></p>
                         </div>
 
                         <button id="next" onclick="next()">
                             >
                         </button>
+
+                        <label id="timer">
+                            <input type="checkbox" checked onchange="toggleTimer(this)">
+                            <span id="checked"></span>
+                            <span id="notChecked"></span>
+                        </label>
                     </div>
                 </div>
 

@@ -190,3 +190,10 @@ function setIntervalWeather() {
 let weatherInterval = setInterval(() => {
     next();
 }, time);
+
+function toggleTimer(checkbox) {
+    if (checkbox.checked)
+        setIntervalWeather();
+    else
+        clearInterval(weatherInterval);
+}
