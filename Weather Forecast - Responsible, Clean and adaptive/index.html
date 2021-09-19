@@ -7,7 +7,6 @@
         <title>Weather</title>
 
         <link href="fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="style.css">
     </head>
 
@@ -15,46 +14,46 @@
         <main>
             <div id="weather">
                 <div id="today">
-                    <i></i>
-                    <h4 id="today-temp"></h4>
-                    <p id="today-description"></p>
+                    <i id="todayIcon"></i>
+                    <h4 id="temp"></h4>
+                    <p id="description"></p>
 
-                    <div id="today-informations">
-                        <button id="back">
+                    <div id="infos">
+                        <button id="previous" onclick="previous()">
                             <
                         </button>
 
-                        <div id="today-rain">
-                            <i></i>
-                            <strong><p>Chance de Chuva</p></strong>
+                        <div id="rain" class="show">
+                            <i class="fas fa-cloud-showers-heavy"></i>
+                            <strong>Chance de Chuva</strong>
                             <p></p>
                         </div>
 
-                        <div id="today-humidity">
-                            <i></i>
-                            <strong><p>Humidade</p></strong>
+                        <div id="humidity">
+                            <i class="fas fa-tint"></i>
+                            <strong>Humidade</strong>
                             <p></p>
                         </div>
                         
-                        <div id="today-wind">
-                            <i></i>
-                            <strong><p>Ventos</p></strong>
+                        <div id="wind">
+                            <i class="fas fa-wind"></i>
+                            <strong>Ventos</strong>
                             <p></p>
                         </div>
                         
-                        <div id="today-sunset">
-                            <i></i>
-                            <strong><p>Pôr do sol</p></strong>
+                        <div id="sunset">
+                            <i class="fas fa-cloud-sun"></i>
+                            <strong>Pôr do sol</strong>
                             <p></p>
                         </div>
                         
-                        <div id="today-sunrise">
-                            <i></i>
-                            <strong><p>Nascer do Sol</p></strong>
+                        <div id="sunrise">
+                            <i class="far fa-moon"></i>
+                            <strong>Nascer do Sol</strong>
                             <p></p>
                         </div>
 
-                        <button id="next">
+                        <button id="next" onclick="next()">
                             >
                         </button>
                     </div>

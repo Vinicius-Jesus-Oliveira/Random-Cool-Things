@@ -7,7 +7,7 @@ const data = [
         "temp": 26,
         "rainChance": 8,
         "humidity": 68,
-        "windSpeedy": 13,
+        "windSpeedy": "13 km/h",
         "sunset": "18:07",
         "sunrise": "06:02",
         "description": "Dia ensolarado",
@@ -78,6 +78,8 @@ const data = [
     }
 ];
 
+const today = data[0];
+
 console.log(data);
 
 let maxima = 0, minima = 100;
@@ -89,42 +91,45 @@ data.forEach((el) => {
         minima = el.min;
 });
 
-document.querySelector("#today > i").classList.add("far", "fa-sun");
-document.getElementById("today-temp").innerHTML = data[0].temp + "°C";
-document.getElementById("today-description").innerHTML = data[0].description;
+todayIcon.classList.add("far", "fa-sun");
+temp.innerHTML = today.temp + "°C";
+description.innerHTML = today.description;
 
-/*
+rain.querySelector("p").innerHTML = today.rainChance + "%";
+humidity.querySelector("p").innerHTML = today.humidity + "%";
+wind.querySelector("p").innerHTML = today.windSpeedy;
+sunset.querySelector("p").innerHTML = today.sunset;
+sunrise.querySelector("p").innerHTML = today.sunrise;
+
 const difference = maxima - minima;
-const divWeekWeather = document.querySelector(".week-weather");
 
 for (let i = 0; i < 7; i++) {
     const divDia = document.createElement("div"),
-            pDate = document.createElement("p"),
-            pWeekDay = document.createElement("p"),
-            divTemperatura = document.createElement("div"),
-            divTermomether = document.createElement("div"),
-            pMax = document.createElement("p"),
-            pMin = document.createElement("p");
+          pDate = document.createElement("p"),
+          strongWeekDay = document.createElement("strong"),
+          divTemperatura = document.createElement("div"),
+          divTermomether = document.createElement("div"),
+          pMax = document.createElement("p"),
+          pMin = document.createElement("p");
 
-    const max = clima[i].max,
-            min = clima[i].min,
-            height = (max - min) * 100 / difference,
-            top = (maxima - max) * 100 / difference,
-            bottom = (min - minima) * 100 / difference;
+    const max = data[i].max,
+          min = data[i].min,
+          top = (maxima - max) * 100 / difference,
+          bottom = (min - minima) * 100 / difference;
 
-    divDia.classList.add("dia", clima[i].weekday);
+    divDia.classList.add("day", data[i].weekday);
 
-    pDate.innerHTML = clima[i].date;
+    pDate.innerHTML = data[i].date;
 
     if (i === 0)
-        pWeekDay.innerHTML = "Hoje";
+        strongWeekDay.innerHTML = "Hoje";
     else
-        pWeekDay.innerHTML = clima[i].weekday;
+        strongWeekDay.innerHTML = data[i].weekday;
 
-    pWeekDay.classList.add("week-weather-date");
+    strongWeekDay.classList.add("week-weather-date");
 
     divDia.appendChild(pDate);
-    divDia.appendChild(pWeekDay);
+    divDia.appendChild(strongWeekDay);
     divDia.appendChild(divTemperatura);
     
     pMax.innerHTML = max;
@@ -142,39 +147,37 @@ for (let i = 0; i < 7; i++) {
     divTemperatura.className = "temperatura";
     divTemperatura.appendChild(divTermomether);
 
-    divWeekWeather.appendChild(divDia);
-}*/
-/*
-const time = 5000;
+    week.appendChild(divDia);
+}
 
 function next() {
-    const show = $(".info.show")[0];
+    const show = document.querySelector("#infos .show");
 
-    if (show.nextElementSibling.classList.contains("info")) {
+    if (show.nextElementSibling.tagName === "DIV")
         show.nextElementSibling.classList.add("show");
-        show.classList.remove("show");
-    } else {
-        $(".group .info")[0].classList.add("show");
-        show.classList.remove("show");
-    }
+    else
+        document.querySelector("#infos div").classList.add("show");
+
+    show.classList.remove("show");
 
     setIntervalWeather();
 }
 
 function previous() {
-    const show = $(".info.show")[0];
-    const all = $(".group .info");
+    const show = document.querySelector("#infos .show");
+    const all = document.querySelectorAll("#infos div");
 
-    if (show.previousElementSibling.classList.contains("info")) {
+    if (show.previousElementSibling.tagName === "DIV")
         show.previousElementSibling.classList.add("show");
-        show.classList.remove("show");
-    } else {
+    else
         all[all.length - 1].classList.add("show");
-        show.classList.remove("show");
-    }
 
+    show.classList.remove("show");
+    
     setIntervalWeather();
 }
+
+const time = 5000;
 
 function setIntervalWeather() {
     clearInterval(weatherInterval);
@@ -187,4 +190,3 @@ function setIntervalWeather() {
 let weatherInterval = setInterval(() => {
     next();
 }, time);
-*/
