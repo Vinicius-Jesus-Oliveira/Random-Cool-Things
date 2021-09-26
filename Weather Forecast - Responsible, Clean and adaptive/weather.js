@@ -159,8 +159,9 @@ function next() {
         document.querySelector("#infos div").classList.add("show");
 
     show.classList.remove("show");
-
-    setIntervalWeather();
+    
+    if (inputTimer.checked)
+        setIntervalWeather();
 }
 
 function previous() {
@@ -174,7 +175,8 @@ function previous() {
 
     show.classList.remove("show");
     
-    setIntervalWeather();
+    if (inputTimer.checked)
+        setIntervalWeather();
 }
 
 const time = 5000;
@@ -191,8 +193,8 @@ let weatherInterval = setInterval(() => {
     next();
 }, time);
 
-function toggleTimer(checkbox) {
-    if (checkbox.checked)
+function toggleTimer() {
+    if (inputTimer.checked)
         setIntervalWeather();
     else
         clearInterval(weatherInterval);

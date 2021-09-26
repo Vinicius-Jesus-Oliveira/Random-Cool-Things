@@ -5,7 +5,7 @@
 }
 
 :root {
-    --main-gradient: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    --main-gradient: linear-gradient(120deg, #f6d365 0%, #fda085 100%) no-repeat fixed;
     --weather-background: linear-gradient(to bottom, #fdfbfb 0%, #ebedee 100%);
     --color: rgb(70, 70, 70);
     --opposite-color: rgb(245, 245, 245);
@@ -13,7 +13,9 @@
     --temp-max: rgb(197, 39, 0);
     --temp-min: rgb(0, 51, 218);
     --termometer: linear-gradient(to bottom, var(--temp-max), var(--temp-min));
-    --separation: linear-gradient(to bottom, transparent, rgb(70, 70, 70), transparent);
+    --week-scrollbar: linear-gradient(to left, var(--temp-max), var(--temp-min));
+    --vertical-separation: linear-gradient(to bottom, transparent, rgb(70, 70, 70), transparent);
+    --horizontal-separation: linear-gradient(to right, transparent, rgb(70, 70, 70), transparent);
 }
 
 body {
@@ -36,7 +38,7 @@ main {
     width: 100%;
     border-radius: 1rem;
     padding: 1rem;
-    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 3.125rem 0 rgba(0, 0, 0, 0.5);
     display: flex;
     background: var(--weather-background);
     height: 22.2rem;
@@ -93,15 +95,14 @@ main {
 
 #next,
 #previous {
-    font-size: 1.5rem;
-    padding: 0 0.7rem;
+    font-size: 2.5vw;
+    padding: 2% 5%;
     background: transparent;
     border: 1px solid var(--color);
     color: var(--color);
     border-radius: 50%;
     cursor: pointer;
     transition: 0.2s ease-in-out;
-    height: 2.5rem;
     margin: auto 0;
 }
 
@@ -143,7 +144,7 @@ main {
 
 #infos > div > strong,
 #infos > div > p {
-    font-size: 1.2rem;
+    font-size: 1.3vw;
 }
 
 #week {
@@ -168,7 +169,8 @@ main {
     top: 0;
     bottom: 0;
     width: 1px;
-    background: var(--separation);
+    background: var(--vertical-separation);
+    left: 0;
 }
 
 .day:last-of-type::after {
@@ -215,7 +217,7 @@ main {
     bottom: -0.5rem;
     cursor: pointer;
     overflow: hidden;
-    height: 25px;
+    height: 1.6rem;
     padding: 0 0.5rem;
     width: 12rem;
 }
@@ -228,8 +230,8 @@ main {
 
 #timer input {
     position: relative;
-    width: 50px;
-    height: 25px;
+    width: 3.125rem;
+    height: 1.6rem;
     cursor: pointer;
 }
 
@@ -239,6 +241,7 @@ main {
 #timer #notChecked {
     transition: all 0.3s;
     position: absolute;
+    border-radius: 1rem;
 }
 
 #timer input::before,
@@ -251,8 +254,8 @@ main {
 }
 
 #timer input::after {
-    width: 115px;
-    left: 55px;
+    width: 7.2rem;
+    left: 3.5rem;
     display: flex;
     white-space: nowrap;
     justify-content: center;
@@ -262,18 +265,19 @@ main {
 
 #timer #checked,
 #timer #notChecked {
-    width: 17.5px;
-    height: 15px;
-    padding: 5px;
+    width: 1.1rem;
+    height: 1.1rem;
+    padding: 0.3rem;
     background-color: var(--color);
+    border-radius: 50%;
 }
 
 #timer #checked {
-    left: 35px;
+    left: 2.2rem;
 }
 
 #timer #notChecked {
-    left: 15px;
+    left: 1rem;
     filter: brightness(200%);
 }
 
@@ -294,17 +298,126 @@ main {
 }
 
 #timer input:not(:checked) + #checked {
-    top: -50px;
+    top: -1.25rem;
 }
 
 #timer input:checked ~ #checked {
-    top: 5px;
+    top: 0.25rem;
 }
 
 #timer input:not(:checked) ~ #notChecked {
-    top: 5px;
+    top: 0.25rem;
 }
 
 #timer input:checked ~ #notChecked {
-    top: -50px;
+    top: -1.25rem;
+}
+
+@media screen and (min-width: 1500px) {
+    #next,
+    #previous {
+        font-size: 2rem;
+        padding: 0.5rem 1rem;
+    }
+
+    #infos > div > strong,
+    #infos > div > p {
+        font-size: 1.5rem;
+    }
+
+    #timer {
+        bottom: -1.5rem;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #today {
+        min-width: 40%;
+        position: relative;
+    }
+
+    #today::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: var(--vertical-separation);
+        right: 0;
+    }
+
+    #week {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        padding-left: 0;
+    }
+    
+    #week::-webkit-scrollbar {
+        height: 8px;
+    }
+    
+    #week::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    #week::-webkit-scrollbar-thumb {
+        background: var(--week-scrollbar);
+        border-radius: 20px;
+    }
+
+    .day {
+        min-width: 20%;
+    }
+
+    .day:first-of-type::before {
+        content: unset;
+    }
+
+    #infos > div > strong,
+    #infos > div > p {
+        font-size: 1rem;
+    }
+
+    #next,
+    #previous {
+        font-size: 1.5rem;
+        padding: 0.1rem 0.5rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    main {
+        padding: 0.5rem;
+    }
+    
+    #weather {
+        flex-direction: column;
+        height: unset;
+        height: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        max-height: 700px;
+    }
+
+    #today::after {
+        height: 1px;
+        width: 100%;
+        top: unset;
+        bottom: -0.8rem;
+        background: var(--horizontal-separation);
+    }
+
+    #infos {
+        margin-top: 1rem;
+    }
+
+    #timer {
+        bottom: -1rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .day {
+        min-width: 25%;
+    }
 }
