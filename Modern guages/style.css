@@ -6,7 +6,14 @@
 
 :root {
     --gauge-line: #303238;
+    --gauge-color: #daa520;
     --guage-container: #1d1e22;
+    --color: #FFF;
+    --gauge-inner: #1d1e22;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 main {
@@ -35,6 +42,21 @@ main {
     aspect-ratio: 1/1;
     border-radius: 50%;
     background: var(--gauge-line);
+    box-shadow: 0 0 10px 2px var(--gauge-line);
+    position: relative;
+}
+
+.guage-inner {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: 50%;
+    background: var(--gauge-inner);
+    box-shadow: 0 0 10px 4px var(--gauge-inner);
+    color: var(--color);
+    display: grid;
+    place-items: center;
+    font-size: 2rem;
     position: relative;
 }
 
@@ -43,16 +65,24 @@ main {
     width: 105%;
     height: 105%;
     border-radius: 50%;
-    background: conic-gradient(var(--gauge-line) 0% 20%, transparent 20% 100%);
     filter: brightness(150%) opacity(0.7);
     transform: rotate(180deg);
 }
 
-.guage-inner {
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  border-radius: 50%;
-  background: #1d1e22;
+.guage-animation {
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    z-index: -1;
+    border-radius: 50%;
+    border: 1px solid var(--color);
+    clip-path: inset(0 2rem);
+    animation: animation infinite linear;
+    transition: 0.3s;
+}
+
+@keyframes animation {
+    from { transform: rotate(0) }
+    to { transform: rotate(360deg) }
 }
 
